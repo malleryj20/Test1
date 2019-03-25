@@ -106,7 +106,7 @@ public class Account {
     public boolean equals (Object x) {
         if (x instanceof Account){
             Account g = (Account)x;
-            if (Name == g.getName() && getType().equals(g.getType()) && Balance == g.getBalance())
+            if (Name.equals(g.getName()) && getType().equals(g.getType()) && Balance == g.getBalance())
                 return true;
             else
                 return false;
