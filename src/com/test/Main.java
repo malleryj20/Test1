@@ -5,14 +5,15 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static void main(String[] args) {
+        boolean z = true;
         double x;
 	Account bankerAcct = new Account("Deborah Jones", "checking", 250.0);
 	Account custAcct = new Account(JOptionPane.showInputDialog("Please input name:"), JOptionPane.showInputDialog("Please input account type:"));
 	if (custAcct.getBalance() == 0)
-	    while (true){
+	    while (z){
 	        try{
                 custAcct.setBalance(Double.parseDouble(JOptionPane.showInputDialog("Your account is empty. Please enter deposit amount")));
-                break;
+                z = false;
             }
             catch(NumberFormatException e){
 	            JOptionPane.showMessageDialog(null, "That's not a number.");
