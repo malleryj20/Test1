@@ -2,6 +2,7 @@ package com.test;
 
 public class Account {
     public final double MIN = 200.0;
+    public final double FEE = 25.0;
     private int accountid = 0;
     private String Name;
     private boolean Type;
@@ -90,7 +91,12 @@ public class Account {
     }
 
     public boolean withdraw(double amnt){
-        return setBalance(Balance-amnt);
+        if (getBalance() > amnt + MIN)
+            return setBalance(Balance-amnt);
+        else if (getBalance() + FEE > 0)
+            return setBalance(Balance-(FEE+amnt));
+        else
+            return false;
     }
 
     public String toString(){
@@ -112,8 +118,6 @@ public class Account {
     public boolean transfer(Account take, double amnt){
         if (Name.equals(take.getName())) {
             if (take.withdraw(amnt)) {
-                if (take.getBalance() < MIN)
-                    take.setBalance(0);
                 return setBalance(Balance + amnt);
             } else
                 return false;
